@@ -161,6 +161,17 @@
     updateCounter();
   });
 
+  // -------------------- TODO: Persistenz mit localStorage --------------------
+  // Ziel: Einträge überleben einen Seiten-Reload.
+  // 1. save(): alle <li> in Objekte { text, date, hot, complete } umwandeln
+  //    und per JSON.stringify unter einem festen Schlüssel speichern.
+  // 2. save() überall aufrufen, wo updateCounter() aufgerufen wird.
+  // 3. Beim Start: JSON.parse(localStorage.getItem(...)) lesen und Einträge
+  //    mit createItem() aufbauen. Nur wenn nichts gespeichert ist, die
+  //    Beispiel-Einträge unten verwenden.
+  // Achtung: localStorage speichert nur Strings -> Datum als ISO-String ablegen.
+  // Doku: https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
+
   // -------------------- Start --------------------
 
   ['Einkaufen gehen', 'ESLint einrichten', 'README schreiben'].forEach((text) => {
