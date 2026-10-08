@@ -1,0 +1,156 @@
+/* -------------------- Grundlayout -------------------- */
+
+body {
+	background-color: #000;
+	font-family: 'Oswald', 'Futura', sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+#page {
+	background-color: #403c3b;
+	max-width: 600px;
+	margin: 0 auto;
+	padding-bottom: 10px;
+}
+
+/* Logo (Text statt Platzhalter-Bild) */
+h1 {
+	color: #ec8b68;
+	font-size: 48px;
+	text-align: center;
+	letter-spacing: .1em;
+	margin: 0;
+	padding: 30px 10px 10px;
+}
+
+/* Überschrift mit Zähler */
+h2 {
+	color: #fff;
+	font-size: 24px;
+	font-weight: normal;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: .2em;
+	margin: 0 0 23px;
+}
+
+h2 span {
+	border-radius: 50%;
+	background-color: #000;
+	font-size: 12px;
+	display: inline-block;
+	position: relative;
+	top: -5px;
+	min-width: 24px;
+	line-height: 24px;
+	margin-left: 5px;
+	letter-spacing: 0;
+}
+
+/* -------------------- Liste -------------------- */
+
+ul {
+	background-color: #584f4d;
+	padding: 0;
+	margin: 0;
+}
+
+li {
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+	background-color: #ec8b68;
+	color: #fff;
+	border-top: 1px solid #fe9772;
+	border-bottom: 1px solid #9f593f;
+	font-size: 24px;
+	letter-spacing: .05em;
+	list-style-type: none;
+	text-shadow: 2px 2px 1px #9f593f;
+	min-height: 60px;
+	padding: 0 0.5em 0 1em;
+	transition: all 0.5s ease;
+}
+
+li .text {
+	flex: 1;
+	cursor: pointer;
+	overflow-wrap: anywhere;
+}
+
+li .date {
+	font-size: 14px;
+	opacity: 0.8;
+	white-space: nowrap;
+}
+
+li .trash-icon,
+li .heart-icon {
+	font-size: 1em;
+	cursor: pointer;
+	transition: color 1s ease;
+}
+
+li .trash-icon:hover,
+li .heart-icon:hover {
+	color: red;
+}
+
+/* Favorit */
+.hot {
+	background-color: #d7666b;
+	text-shadow: 2px 2px 1px #914141;
+	border-top: 1px solid #e99295;
+	border-bottom: 1px solid #914141;
+}
+
+/* Erledigt */
+.complete {
+	background-color: #999;
+	text-shadow: 2px 2px 1px #333;
+	border-top: 1px solid #666;
+}
+
+.complete .text {
+	text-decoration: line-through;
+}
+
+/* -------------------- Eingabe -------------------- */
+
+#inputField {
+	box-sizing: border-box;
+	border: 0;
+	padding: 0.5em;
+	width: 100%;
+	font-family: 'Oswald', 'Futura', sans-serif;
+	font-size: 24px;
+}
+
+/* -------------------- Drag & Drop -------------------- */
+
+#trashzone {
+	color: white;
+	text-align: center;
+	padding-top: 10px;
+	transition: all 0.5s ease-in-out;
+}
+
+#trashzone span {
+	display: inline-block;
+	font-size: 3em;
+	transition: all 0.5s ease-in-out;
+}
+
+.dragAndDropOpacity {
+	opacity: 0.3;
+}
+
+[draggable=true] {
+	cursor: grab;
+}
+
+.trashIconTransform > span {
+	transform: scale(1.5);
+	color: tomato;
+}
