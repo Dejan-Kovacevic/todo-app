@@ -12,7 +12,6 @@
   const inputField = document.getElementById('inputField');
   const counter = document.getElementById('counter');
   const trashzone = document.getElementById('trashzone');
-  const feedback = document.getElementById('feedback');
   const PLACEHOLDER = inputField.getAttribute('placeholder');
 
   let draggedItem = null;
@@ -84,56 +83,12 @@
 
   // -------------------- Phase 3: Eingabeleiste --------------------
 
-  // Themenfilter: die Liste ist nur für Alltagsaufgaben gedacht.
-  // words  = muss als ganzes Wort vorkommen ("ki" trifft "KI-Tool", aber nicht "Kiste")
-  // stems  = darf irgendwo im Text vorkommen (fängt zusammengesetzte Wörter ab)
-  const BLOCKED_TOPICS = [
-    {
-      name: 'KI',
-      words: ['ki', 'ai', 'llm', 'gpt', 'chatgpt', 'claude', 'gemini', 'copilot', 'openai', 'chatbot', 'prompt', 'prompts'],
-      stems: ['künstliche intelligenz', 'kuenstliche intelligenz', 'machine learning', 'maschinelles lernen', 'neuronal', 'sprachmodell'],
-    },
-    {
-      name: 'Autos',
-      words: ['auto', 'autos', 'pkw', 'lkw', 'vw', 'bmw', 'audi', 'tesla', 'porsche', 'mercedes', 'toyota', 'opel', 'tanken', 'garage'],
-      stems: [
-        'automobil', 'fahrzeug', 'autobahn', 'autowasch', 'autowäsche', 'autowerkstatt', 'autoversicherung',
-        'elektroauto', 'mietauto', 'führerschein', 'fuehrerschein', 'tankstelle', 'reifenwechsel',
-        'winterreifen', 'sommerreifen', 'ölwechsel', 'oelwechsel', 'selbstfahrend', 'autonomes fahren',
-      ],
-    },
-  ];
-
-  function findBlockedTopic(text) {
-    const lower = text.toLowerCase();
-    const tokens = lower.split(/[^a-z0-9äöüß]+/);
-    const topic = BLOCKED_TOPICS.find(({ words, stems }) =>
-      words.some((word) => tokens.includes(word)) || stems.some((stem) => lower.includes(stem)),
-    );
-    return topic ? topic.name : null;
-  }
-
-  function showFeedback(message) {
-    feedback.textContent = message;
-    feedback.hidden = !message;
-    inputField.classList.toggle('rejected', Boolean(message));
-  }
-
-  inputField.addEventListener('input', () => showFeedback(''));
-
   inputField.addEventListener('keyup', async (event) => {
     if (event.key !== 'Enter') return;
 
     const value = inputField.value.trim();
     if (!value) {
       log('Leere Eingabe ignoriert');
-      return;
-    }
-
-    const blockedTopic = findBlockedTopic(value);
-    if (blockedTopic) {
-      log('Abgelehnt (Thema ' + blockedTopic + '):', value);
-      showFeedback(`Abgelehnt: Aufgaben zum Thema ${blockedTopic} gehören nicht auf diese Liste. Bitte nur Alltagsaufgaben eintragen.`);
       return;
     }
 
